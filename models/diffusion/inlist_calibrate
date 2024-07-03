@@ -1,0 +1,92 @@
+&star_job
+    !load_saved_model = .true.
+    !load_model_filename = 'prezams.mod'
+    
+    !save_model_when_terminate = .true.
+    !save_model_filename = 'solar.mod'
+    
+    change_initial_net = .true.
+    new_net_name = 'pp_and_cno_extras.net'
+    
+    write_profile_when_terminate = .true.
+    filename_for_profile_when_terminate = 'LOGS/solar.data'
+
+    save_pulse_data_when_terminate = .true.
+    save_pulse_data_filename = 'LOGS/solar.data.GYRE'
+    
+    relax_Y = .true.
+    relax_Z = .true.
+    new_Y = 0.272832246246596
+    new_Z = 0.01853349976050075
+    
+    set_initial_age = .true.
+    initial_age = 0
+
+    !new_core_mass = 1d-3
+    !dlg_core_mass_per_step = 1d-1
+    
+/ ! end of star_job namelist
+
+
+&eos
+    use_FreeEOS = .false.
+    !use_OPAL_SCVH = .false.
+    use_Skye = .false.
+
+/ ! end of eos namelist
+
+
+&kap
+    use_Type2_opacities = .false.
+    cubic_interpolation_in_Z = .true.
+    cubic_interpolation_in_X = .true.
+
+/ ! end of kap namelist
+
+
+&controls
+    initial_mass = 1
+    initial_z = 0.02
+    
+    mesh_delta_coeff = 1
+    
+    MLT_option = 'Cox'
+    mixing_length_alpha = 1.79923729991001
+    
+    atm_T_tau_opacity = 'varying'
+    
+    !P_function_weight = 150  ! default is 40
+    !T_function1_weight = 200 ! default is 110
+    !log_kap_function_weight = 100 
+    
+    use_gold2_tolerances = .true.
+
+    !x_logical_ctrl(1) = .true.  ! dark core 
+    !x_ctrl(1) = 0.1
+    
+    max_age = 4.572d9
+    
+    do_element_diffusion = .true.
+    do_diffusion_heating = .true.
+    diffusion_dt_limit = 7d11
+    !diffusion_T_full_on = 1d3
+    !diffusion_T_full_off = 1d3
+    diffusion_calculates_ionization = .true.
+    diffusion_use_full_net = .true.
+    diffusion_use_cgs_solver = .true.
+    
+    !num_adjusted_dt_steps_before_max_age = 10
+    !dt_years_for_steps_before_max_age = 1d7
+    max_years_for_timestep = 1e7
+    
+    log_directory = 'LOGS'
+    pulse_data_format = 'GYRE'
+    add_atmosphere_to_pulse_data = .true.
+    add_double_points_to_pulse_data = .true.
+
+    history_interval = 1
+    profile_interval = 9999
+    photo_interval = 9999
+    
+/ ! end of controls namelist
+

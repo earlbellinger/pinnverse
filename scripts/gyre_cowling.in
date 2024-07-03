@@ -1,0 +1,68 @@
+&model
+    model_type = 'EVOL'
+    file = 'solar.data.GYRE'
+    file_format = 'MESA'
+/
+
+&constants
+/
+
+
+&mode
+    l=0
+/
+&mode
+    l=1
+/
+&mode
+    l=2
+/
+&mode
+    l=3
+/
+
+
+&osc
+    outer_bound = 'VACUUM'
+    variables_set = 'GYRE'
+    inertia_norm = 'BOTH'
+    x_ref = 1
+    alpha_grv = 0
+/
+
+&num
+    diff_scheme = 'MAGNUS_GL4'
+/
+
+&scan
+    grid_type = 'LINEAR'
+    freq_min_units = 'UHZ'
+    freq_max_units = 'UHZ'
+    freq_min = 800
+    freq_max = 4500
+    n_freq = 1000
+/
+
+&grid
+    w_ctr = 10
+    w_osc = 10
+    w_exp = 2
+/
+
+&rot
+/
+
+&ad_output
+    summary_file = 'solar-freqs.dat'
+    summary_file_format = 'TXT'
+    summary_item_list = 'l,n_pg,n_p,n_g,freq,E_norm'
+    freq_units = 'UHZ'
+    
+    detail_file_format = 'TXT'
+    detail_template = 'eigenfunctions/%L_%N'
+    detail_item_list = 'M_star,R_star,l,n_pg,n_p,n_g,freq,E,E_p,E_g,E_norm,M_r,x,xi_r,xi_h,y_1,y_2,y_3,y_4'
+/
+
+&nad_output
+/
+
